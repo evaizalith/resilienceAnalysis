@@ -1,0 +1,21 @@
+compileOption:
+        instSelMethod:
+                - insttype:
+                        include:
+                                - all
+                        exclude:
+                                - ret
+        regSelMethod: regloc
+        regloc: allreg
+
+        tracingPropagation: False
+
+        tracingPropagationOption:
+                maxTrace: 250
+                debugTrace: False
+                generateCDFG: True
+
+runOption:
+        - run:
+                numOfRuns: 1000
+                fi_type: bitflip
