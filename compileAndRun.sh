@@ -12,13 +12,13 @@ $HOME/llvm-project/build/bin/llvm-link -o "$fname.ll" -S *.ll
 opt "$fname.ll" -$OPT_LEVEL --disable-preinline -time-passes -S -o "$fname.ll"
 
 echo "Instrumenting..."
-python3 $LLFI_BUILD_ROOT/bin/instrument.py -lstdc++ --readable "$fname.ll"
+$LLFI_BUILD_ROOT/bin/instrument -lstdc++ --readable "$fname.ll"
 
 shift
 echo "Profiling..."
-python3 $LLFI_BUILD_ROOT/bin/profile.py ./llfi/"$fname-profiling.exe" $NUM_RUNS $@
+$LLFI_BUILD_ROOT/bin/profile ./llfi/"$fname-profiling.exe" $NUM_RUNS $@
 
 echo "Injecting faults..."
-python3 $LLFI_BUILD_ROOT/bin/injectfault.py ./llfi/"$fname-faultinjection.exe" $NUM_RUNS $@
+$LLFI_BUILD_ROOT/bin/injectfault ./llfi/"$fname-faultinjection.exe" $NUM_RUNS $@
 
 echo "All done!" 
