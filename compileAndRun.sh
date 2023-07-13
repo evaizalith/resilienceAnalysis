@@ -9,7 +9,7 @@ clang++ -w -emit-llvm -fno-unroll-loops -lstdc++ -fno-use-cxa-atexit -$OPT_LEVEL
 echo "Calling llvm-link..."
 $HOME/llvm-project/build/bin/llvm-link -o "$fname.ll" -S *.ll
 
-opt "$fname.ll" -$OPT_LEVEL1 --disable-inlining -time-passes -S -o "$fname.ll"
+opt "$fname.ll" -$OPT_LEVEL --disable-preinline -time-passes -S -o "$fname.ll"
 
 echo "Instrumenting..."
 python3 $LLFI_BUILD_ROOT/bin/instrument.py -lstdc++ --readable "$fname.ll"
