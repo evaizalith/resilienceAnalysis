@@ -5,8 +5,9 @@ compileOption:
                                 - all
                         exclude:
                                 - ret
+                                - getelementptr
         regSelMethod: regloc
-        regloc: allreg
+        regloc: dstreg
 
         tracingPropagation: False
 
